@@ -1,5 +1,34 @@
-MCP Travel System Without Agents:
-The server exposes hardcoded tools—like get_weather, get_flight_details, and generate_itinerary_pdf—which return mock data or generate a PDF itinerary. The client explicitly calls each tool sequentially, providing parameters in code. All queries and tool usage are fixed, and the system has no autonomous decision-making. Communication is asynchronous via MCP over standard I/O, but the flow is entirely controlled by the client.
+# Travel MCP System with Gemini Agent
 
-MCP Travel System Using Agents:
-An agent-based setup uses an MCP agent to orchestrate multiple tools dynamically. The agent can decide which tools to call, in what order, and with which parameters, based on user input or context. For example, a user could ask for a full travel plan, and the agent would fetch weather, flights, and generate an itinerary automatically. This approach allows flexible, autonomous workflows rather than hardcoded calls, while still using MCP for communication between tools and the agent.
+A complete travel assistant system using **MCP (Modular Control Protocol)** with **Semantic Kernel** and **Gemini LLM**.  
+It provides live flight search, weather information, and itinerary generation, optionally allowing an autonomous agent to plan multi-step actions.
+
+---
+
+## Features
+
+### Server (`travel_server.py`)
+- **Fetch live flights** using Amadeus API.
+- **Get current weather** for any city using OpenWeather API.
+- **Generate travel itineraries** as PDF using OpenTripMap data.
+- Each functionality is exposed as an MCP **tool**, enabling clients or agents to call them dynamically.
+
+### Client (`travel_agent_client.py`)
+- Connects to the MCP Travel Server.
+- **Autonomous agent** powered by Gemini (via Semantic Kernel) for reasoning.
+- Maintains **memory** of previous actions for multi-step travel planning.
+- Dynamically selects the appropriate server tools to answer queries.
+
+### Gemini Agent (Optional)
+- Uses the **Gemini LLM** to decide which tools to call.
+- Supports JSON-based plans for multi-step actions.
+- Provides clean, human-readable output (no JSON blobs).
+
+---
+
+## Setup
+
+1. **Clone repository**
+```bash
+git clone <repo_url>
+cd <repo_folder>
