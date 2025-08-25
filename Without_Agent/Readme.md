@@ -1,1 +1,1 @@
-
+An MCP travel system without agents relies on a client that calls hardcoded tools like weather lookup, flight details, and PDF itinerary generation, returning fixed or mock results in a set sequence without dynamic decision-making.
